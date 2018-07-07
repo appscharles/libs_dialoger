@@ -23,8 +23,8 @@ public class ExceptionDialogFactoryTest {
         Platform.runLater(()->{
             Alert alert = ExceptionDialogFactory.create("Title", "Content text", new IOException("IO Exception"))
                     .build();
-            alert.showAndWait();
+            alert.show();
         });
-        Thread.sleep(8000);
+        Thread.sleep(2000);
     }
 }
