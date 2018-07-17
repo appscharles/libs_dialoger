@@ -20,7 +20,7 @@ public class FileChooserFactoryTest {
         PlatformImpl.startup(()->{});
         PlatformImpl.runAndWait(()->{
             FileChooser chooser = FileChooserFactory.create("Zapisz").build();
-            chooser.showSaveDialog(null);
+            //chooser.showSaveDialog(null);
         });
     }
 }
