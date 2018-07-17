@@ -1,5 +1,6 @@
 package com.appscharles.libs.dialoger.factories;
 
+import com.appscharles.libs.dialoger.converters.ExceptionConverter;
 import com.appscharles.libs.fxer.controls.UTF8Control;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
@@ -12,8 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ResourceBundle;
 
 /**
@@ -90,10 +89,7 @@ public class ExceptionDialogFactory {
      * @return the alert
      */
     public Alert build() {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        this.exception.printStackTrace(pw);
-        String exceptionText = sw.toString();
+        String exceptionText = ExceptionConverter.toString(this.exception);
         Label label = new Label(this.resourceBundle.getString("view.label.details_error"));
         TextArea textArea = new TextArea(exceptionText);
         textArea.setEditable(false);
@@ -111,7 +107,6 @@ public class ExceptionDialogFactory {
         if (this.iconStageResource != null) {
             stage.getIcons().add(new Image(this.getClass().getResource(this.iconStageResource).toString()));
         }
-
         Platform.runLater(() -> {
             Hyperlink detailsButton = (Hyperlink) alert.getDialogPane().lookup(".details-button");
             detailsButton.setText(this.alert.getDialogPane().isExpanded() ?
