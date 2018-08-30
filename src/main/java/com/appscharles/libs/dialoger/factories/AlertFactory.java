@@ -20,6 +20,8 @@ public class AlertFactory {
 
     private ResourceBundle resourceBundle;
 
+    private ButtonType buttonOk;
+
     /**
      * Create alert factory.
      *
@@ -35,6 +37,7 @@ public class AlertFactory {
         instance.alert.setHeaderText(null);
         instance.alert.setContentText(contentText);
         instance.resourceBundle = ResourceBundle.getBundle("com/appscharles/libs/dialoger/translations/Alert", new UTF8Control());
+        instance.buttonOk = new ButtonType(instance.resourceBundle.getString("view.button.ok"), ButtonBar.ButtonData.OK_DONE);
         return instance;
     }
 
@@ -72,11 +75,20 @@ public class AlertFactory {
      */
     public Alert build() {
         this.alert.getDialogPane().getButtonTypes().clear();
-        this.alert.getDialogPane().getButtonTypes().add(new ButtonType(this.resourceBundle.getString("view.button.ok"), ButtonBar.ButtonData.OK_DONE));
+        this.alert.getDialogPane().getButtonTypes().add(this.buttonOk);
         Stage stage = (Stage) this.alert.getDialogPane().getScene().getWindow();
         if (this.iconStageResource != null) {
             stage.getIcons().add(new Image(this.getClass().getResource(this.iconStageResource).toString()));
         }
         return alert;
+    }
+
+    /**
+     * Getter for property 'buttonOk'.
+     *
+     * @return Value for property 'buttonOk'.
+     */
+    public ButtonType getButtonOk() {
+        return buttonOk;
     }
 }
