@@ -28,6 +28,8 @@ public class ExceptionDialogFactory {
 
     private String iconStageResource;
 
+    private String exceptionString;
+
     private ExceptionDialogFactory() {
         this.alert = new Alert(Alert.AlertType.ERROR);
     }
@@ -89,7 +91,7 @@ public class ExceptionDialogFactory {
      * @return the alert
      */
     public Alert build() {
-        String exceptionText = ExceptionConverter.toString(this.exception);
+        String exceptionText = (this.exceptionString == null) ? ExceptionConverter.toString(this.exception) : this.exceptionString;
         Label label = new Label(this.resourceBundle.getString("view.label.details_error"));
         TextArea textArea = new TextArea(exceptionText);
         textArea.setEditable(false);
@@ -120,5 +122,15 @@ public class ExceptionDialogFactory {
                     });
         });
         return this.alert;
+    }
+
+    /**
+     * Setter for property 'exceptionString'.
+     *
+     * @param exceptionString Value to set for property 'exceptionString'.
+     */
+    public ExceptionDialogFactory setExceptionString(String exceptionString) {
+        this.exceptionString = exceptionString;
+        return this;
     }
 }
