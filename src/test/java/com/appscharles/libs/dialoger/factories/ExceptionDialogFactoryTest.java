@@ -3,7 +3,7 @@ package com.appscharles.libs.dialoger.factories;
 import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 

@@ -2,7 +2,7 @@ package com.appscharles.libs.dialoger.factories;
 
 import com.sun.javafx.application.PlatformImpl;
 import javafx.stage.FileChooser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * IDE Editor: IntelliJ IDEA
