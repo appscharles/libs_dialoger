@@ -5,6 +5,8 @@ import com.appscharles.libs.fxer.abstracts.IStatusProgressAsynchable;
 import com.appscharles.libs.fxer.exceptions.ThrowingConsumer;
 import com.appscharles.libs.fxer.sneakers.ExceptionDialogThrowSneaker;
 import com.sun.javafx.application.PlatformImpl;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -55,7 +57,8 @@ public class AsyncProgressBuilder {
     /**
      * Build.
      */
-    public void build() {
+    public ProgressStage build() {
+        ObjectProperty<ProgressStage> progressStage = new SimpleObjectProperty<>();
         ExceptionDialogThrowSneaker.sneaky(() -> {
             ExecutorService service = Executors.newSingleThreadExecutor();
             service.submit(() -> {
@@ -70,8 +73,9 @@ public class AsyncProgressBuilder {
                 statusProgressAsynchable.getStatusProgress().setProgress(1.0);
             });
             service.shutdown();
-            this.progressStage.showFx();
+            progressStage.setValue(this.progressStage);
         });
+        return progressStage.getValue();
     }
 
     /**

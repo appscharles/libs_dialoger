@@ -72,4 +72,22 @@ public class ProgressStage {
             stage.showFX();
         }
     }
+
+    /**
+     * Sets resource icon.
+     *
+     * @param resourceIcon the resource icon
+     */
+    public void setResourceIcon(String resourceIcon) {
+        this.resourceIcon = resourceIcon;
+    }
+
+    /**
+     * Gets stylesheets.
+     *
+     * @return the stylesheets
+     */
+    public List<String> getStylesheets() {
+        return stylesheets;
+    }
 }
